@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.order.mapper.FaEquipmentCardMapper">
+  <resultMap id="BaseResultMap" type="com.cloud.order.model.FaEquipmentCard">
+    <id column="eq_card_id" jdbcType="BIGINT" property="eqCardId" />
+    <result column="eq_card_code" jdbcType="VARCHAR" property="eqCardCode" />
+    <result column="eq_id" jdbcType="BIGINT" property="eqId" />
+    <result column="eq_name" jdbcType="VARCHAR" property="eqName" />
+    <result column="branch_id" jdbcType="BIGINT" property="branchId" />
+    <result column="shop_id" jdbcType="BIGINT" property="shopId" />
+    <result column="gmt_created" jdbcType="TIMESTAMP" property="gmtCreated" />
+    <result column="gmt_modified" jdbcType="TIMESTAMP" property="gmtModified" />
+    <result column="eq_status" jdbcType="TINYINT" property="eqStatus" />
+    <result column="eq_status_cn" jdbcType="VARCHAR" property="eqStatusCn" />
+    <result column="eq_batch_id" jdbcType="BIGINT" property="eqBatchId" />
+    <result column="branch_name" jdbcType="VARCHAR" property="branchName" />
+    <result column="shop_name" jdbcType="VARCHAR" property="shopName" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    eq_card_id, eq_card_code, eq_id, eq_name, branch_id, shop_id, gmt_created, gmt_modified, 
+    eq_status, eq_status_cn, eq_batch_id, branch_name, shop_name
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from fa_equipment_card
+    where eq_card_id = #{eqCardId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from fa_equipment_card
+    where eq_card_id = #{eqCardId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cloud.order.model.FaEquipmentCard">
+    insert into fa_equipment_card (eq_card_id, eq_card_code, eq_id, 
+      eq_name, branch_id, shop_id, 
+      gmt_created, gmt_modified, eq_status, 
+      eq_status_cn, eq_batch_id, branch_name, 
+      shop_name)
+    values (#{eqCardId,jdbcType=BIGINT}, #{eqCardCode,jdbcType=VARCHAR}, #{eqId,jdbcType=BIGINT}, 
+      #{eqName,jdbcType=VARCHAR}, #{branchId,jdbcType=BIGINT}, #{shopId,jdbcType=BIGINT}, 
+      #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{eqStatus,jdbcType=TINYINT}, 
+      #{eqStatusCn,jdbcType=VARCHAR}, #{eqBatchId,jdbcType=BIGINT}, #{branchName,jdbcType=VARCHAR}, 
+      #{shopName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.cloud.order.model.FaEquipmentCard">
+    insert into fa_equipment_card
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eqCardId != null">
+        eq_card_id,
+      </if>
+      <if test="eqCardCode != null">
+        eq_card_code,
+      </if>
+      <if test="eqId != null">
+        eq_id,
+      </if>
+      <if test="eqName != null">
+        eq_name,
+      </if>
+      <if test="branchId != null">
+        branch_id,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created,
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified,
+      </if>
+      <if test="eqStatus != null">
+        eq_status,
+      </if>
+      <if test="eqStatusCn != null">
+        eq_status_cn,
+      </if>
+      <if test="eqBatchId != null">
+        eq_batch_id,
+      </if>
+      <if test="branchName != null">
+        branch_name,
+      </if>
+      <if test="shopName != null">
+        shop_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eqCardId != null">
+        #{eqCardId,jdbcType=BIGINT},
+      </if>
+      <if test="eqCardCode != null">
+        #{eqCardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eqId != null">
+        #{eqId,jdbcType=BIGINT},
+      </if>
+      <if test="eqName != null">
+        #{eqName,jdbcType=VARCHAR},
+      </if>
+      <if test="branchId != null">
+        #{branchId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreated != null">
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eqStatus != null">
+        #{eqStatus,jdbcType=TINYINT},
+      </if>
+      <if test="eqStatusCn != null">
+        #{eqStatusCn,jdbcType=VARCHAR},
+      </if>
+      <if test="eqBatchId != null">
+        #{eqBatchId,jdbcType=BIGINT},
+      </if>
+      <if test="branchName != null">
+        #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        #{shopName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cloud.order.model.FaEquipmentCard">
+    update fa_equipment_card
+    <set>
+      <if test="eqCardCode != null">
+        eq_card_code = #{eqCardCode,jdbcType=VARCHAR},
+      </if>
+      <if test="eqId != null">
+        eq_id = #{eqId,jdbcType=BIGINT},
+      </if>
+      <if test="eqName != null">
+        eq_name = #{eqName,jdbcType=VARCHAR},
+      </if>
+      <if test="branchId != null">
+        branch_id = #{branchId,jdbcType=BIGINT},
+      </if>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=BIGINT},
+      </if>
+      <if test="gmtCreated != null">
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null">
+        gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eqStatus != null">
+        eq_status = #{eqStatus,jdbcType=TINYINT},
+      </if>
+      <if test="eqStatusCn != null">
+        eq_status_cn = #{eqStatusCn,jdbcType=VARCHAR},
+      </if>
+      <if test="eqBatchId != null">
+        eq_batch_id = #{eqBatchId,jdbcType=BIGINT},
+      </if>
+      <if test="branchName != null">
+        branch_name = #{branchName,jdbcType=VARCHAR},
+      </if>
+      <if test="shopName != null">
+        shop_name = #{shopName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where eq_card_id = #{eqCardId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cloud.order.model.FaEquipmentCard">
+    update fa_equipment_card
+    set eq_card_code = #{eqCardCode,jdbcType=VARCHAR},
+      eq_id = #{eqId,jdbcType=BIGINT},
+      eq_name = #{eqName,jdbcType=VARCHAR},
+      branch_id = #{branchId,jdbcType=BIGINT},
+      shop_id = #{shopId,jdbcType=BIGINT},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modified = #{gmtModified,jdbcType=TIMESTAMP},
+      eq_status = #{eqStatus,jdbcType=TINYINT},
+      eq_status_cn = #{eqStatusCn,jdbcType=VARCHAR},
+      eq_batch_id = #{eqBatchId,jdbcType=BIGINT},
+      branch_name = #{branchName,jdbcType=VARCHAR},
+      shop_name = #{shopName,jdbcType=VARCHAR}
+    where eq_card_id = #{eqCardId,jdbcType=BIGINT}
+  </update>
+</mapper>

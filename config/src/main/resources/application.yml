@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: config
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/renph/cloud-bus-test.git
+          username: 308129771@qq.com
+          password: rph246367
+          basedir: F:\cloud\basedir
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+#server:
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+#  port: 8121

@@ -1,0 +1,18 @@
+eureka:
+  server:
+    enable-self-preservation: false #关闭自我保护
+    eviction-interval-timer-in-ms: 4000 #清理无效服务间隔（单位毫秒，默认是60*1000）
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    #不显示自己
+    register-with-eureka: false
+spring:
+  application:
+    name: eureka
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000
+#server:
+#  port: 8761

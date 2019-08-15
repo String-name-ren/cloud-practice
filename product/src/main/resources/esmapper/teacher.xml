@@ -1,0 +1,65 @@
+<properties>
+
+    <!--创建问题信息索引表结构-->
+    <property name="createIndex">
+        <![CDATA[
+            {
+              "settings": {
+                "number_of_shards": 3,
+                "number_of_replicas": 1
+              },
+              "mappings": {
+                "teacher": {
+                  "properties": {
+                    "teacherId": {
+                      "type": "long"
+                    },
+                    "name": {
+                      "type": "text"
+                    },
+                    "sex": {
+                      "type": "integer"
+                    },
+                    "createAt": {
+                      "type": "date",
+                      "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+                    }
+                  }
+                }
+              }
+            }
+        ]]>
+    </property>
+
+
+   <!-- <property name="getPage1">
+        <![CDATA[{
+            "query": {
+                "match_all": {
+                }
+            }
+        }]]>
+    </property>-->
+
+
+    <property name="getPage">
+        <![CDATA[{
+            "query": {
+                "bool": {
+                    "filter": [
+                        #if($teacherId > 0)
+                        {
+                            "term": {
+                                "teacherId": #[teacherId]
+                            }
+                        }
+                        #end
+                    ]
+                }
+            }
+        }]]>
+    </property>
+
+
+
+</properties>

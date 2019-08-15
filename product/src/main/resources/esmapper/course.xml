@@ -1,0 +1,46 @@
+<properties>
+
+    <!--创建问题信息索引表结构-->
+    <property name="createIndex">
+        <![CDATA[{
+            "settings" : {
+                "number_of_shards": 4,
+                "number_of_replicas": 1,
+                "index.refresh_interval": "30s"
+            },
+            "mappings": {
+              "course": {
+                "dynamic": "true",
+                "properties": {
+                  "teacherId": {
+                    "type": "long"
+                  },
+                  "name": {
+                    "type": "text",
+                    "analyzer": "ik_max_word"
+                  },
+                  "sex": {
+                    "type": "integer"
+                  },
+                  "createdAt": {
+                    "type": "date",
+                    "format": "yyyy-MM-dd HH:mm:ss||yyyy-MM-dd||epoch_millis"
+                  }
+                }
+              }
+            }
+        }]]>
+    </property>
+
+
+    <property name="getPage">
+        <![CDATA[{
+            "query": {
+                "match_all": {
+                }
+            }
+        }]]>
+    </property>
+
+
+</properties>

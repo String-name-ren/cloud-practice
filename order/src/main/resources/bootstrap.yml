@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: order
+  zipkin:
+    base-url: http://localhost:9411/ #设置zipkin server
+    enabled: true
+    sender:
+      type: web
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config
+      profile: dev
+  sleuth:
+    web:
+      client:
+        enabled: true
+    sampler:
+      probability: 1.0 #收集样本的比例,0-1，1表示所有请求都收集
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka,http://localhost:8762/eureka
+
+hystrix:
+  command:
+    default:
+      circuitBreaker:
+        #enabled: false  #不开启熔断
+        requestVolumeThreshold: 3 #一个统计窗口内熔断触发的最小个数
+        sleepWindowInMilliseconds: 5000  #熔断多少秒后去尝试请求
+        errorThresholdPercentage: 10  #失败率达到多少百分比后熔断
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 3000
+
+
+#feign配置
+feign:
+  hystrix:
+    enabled: true
+  compression:
+    request.enabled: true
+    response.enabled: true
+
+#ribbon的超时重试
+ribbon:
+  eureka:
+    enabled: true
+  ReadTimeout: 6000
+  ConnectTimeout: 6000
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+logging:
+  level:
+    com.cloud.order.controller: debug
+

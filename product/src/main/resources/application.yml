@@ -1,0 +1,50 @@
+spring:
+  zipkin:
+    base-url: http://localhost:9411/ #设置zipkin server
+    sender:
+      type: web
+  sleuth:
+    sampler:
+      probability: 1.0
+  application:
+    name: product
+  rabbitmq:
+    username: renph
+    password: 123456
+    virtual-host: /
+    addresses: 127.0.0.1:5672
+    listener:
+      simple:
+        acknowledge-mode: auto
+  elasticsearch:
+    bboss:
+      elasticsearch:
+        rest:
+          hostNames: 192.168.141.230:9200
+          ##hostNames: 192.168.8.25:9200,192.168.8.26:9200,192.168.8.27:9200  ##集群地址配置
+        showTemplate: true
+        dateFormat: yyyy.MM.dd
+        timeZone: GMT+8
+        ttl: 2d
+        dslfile:
+          refreshInterval: -1
+  boot:
+    admin:
+      client:
+        url: http://localhost:8000
+server:
+  port: 9191
+
+es:
+  basePath: esmapper/
+  indexs: teacher,course
+
+logging:
+  level:
+    com.cloud.product.controller: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
